@@ -337,6 +337,7 @@ int main()
 {
     int N;
     cin >> N;
+    cout<<"2"<<endl;
     for (int i = 2; i <= N; i++)
     {
         for (int j = 2; j <= i; j++)
