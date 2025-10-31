@@ -219,5 +219,89 @@ int main() {
 否则，为动态变量
 不进行初始化时，静态变量默认为0
 静态变量创建之后，开辟内存，不会再销毁
-例如执行函数时，形参在执行完函数后，会销毁内存，但静态变量不会被销毁
+例如执行函数时，形参在执行完函数后，会销毁内存，但静态变量不会，
+如:用于统计函数被调用的次数：
+#include <iostream>
+using namespace std;
+
+void printCount() {
+    static int count = 0;
+ // static静态局部变量，只初始化一次
+    count++;
+    cout << "这个函数已经被调用了 " << count << " 次" << endl;
+}
+
+int main() {
+    for(int i = 0; i < 5; i++) {
+        printCount();
+    }
+    return 0;
+}
+
+**输出结果：
+这个函数已经被调用了 1 次
+这个函数已经被调用了 2 次
+这个函数已经被调用了 3 次
+这个函数已经被调用了 4 次
+这个函数已经被调用了 5 次
+
+- `static int count = 0;`  
+ 这个变量在函数多次调用过程中值不会丢失，只初始化一次。每次`printCount`被调用时，`count`会递增1。
+- 静态局部变量常用于需要**记忆状态**的场合。
+*/
+
+//标识符作用域
+/*
+1.块作用域
+可用{}划分作用域
+如
+{
+int A=1; 
+{
+int A=2; 
+cout<<A; 
+//动态变量只存在于一个块作用域内，出大括号就被销毁
+}
+cout<<A; 
+}
+结果为2 1
+2.文件作用域变量
+不再任何一个{}内定义的变量，作用于它出现之后
+如
+#include<iostream>
+using namespace std ;
+int a;
+void function()
+{}
+int b;
+int main()
+{}
+a作用于全局，b作用于function函数外的部分
+3.全局变量与局部变量
+当全局变量与块内变量同名时，屏蔽全局量，执行块内量
+如果想操纵全局量，需要在变量名前加::
+全局变量不会因块作用域结束而销毁内存
+如:
+#include<iostream>
+using namespace std ;
+int a=0; 
+int func()
+int a=10; 
+static int b=100; 
+::a+=l; 
+a+=10; 
+b+=100; 
+cout<<::a<<" "; 
+cout<<a<<" "; 
+cout<<b<<" "; 
+return ::a+a+b;
+int main()
+{
+cout<<func () <<endl; 
+cout<<func () <<endl; 
+return 0; 
+}
+结果为
+1 20 200 221
+2 20 300 322
 */
