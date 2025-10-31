@@ -65,8 +65,8 @@ cout << str << endl;
 cout << str << endl;
 str[n]表示字符串的第n个字符，n从0开始
 输入字符串的时候，如果没有不可见字符(比如空格)，可以直接cin>>str;
-但如果想输入的字符串有空格，需要用getline(cin, str);(这里的str是字符串名)
-str.length()表示字符串str的长度(多少个字符)
+但如果想输入的字符串有空格，需要用getline(cin, 字符串名);
+字符串名.length()表示字符串的长度(多少个字符)
 7.布尔类型:代表真或假的值
 ture  表示真(1)
 false 表示假(0)
