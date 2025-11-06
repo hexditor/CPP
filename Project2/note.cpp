@@ -1170,3 +1170,211 @@ void bubbleSort(int *arr[], int n)
 }
 
 */
+
+//结构体
+/*
+ 结构体是一种用户自定义的数据类型，用于将不同类型的数据组合在一起，形成一个整体。
+ 结构体可以包含多个成员变量，每个成员变量可以是不同的数据类型。
+ 结构体的定义语法如下：
+ struct 结构体名 
+ {
+  数据类型 成员变量名1;
+  数据类型 成员变量名2;
+	 ...
+ };
+ 例如：
+ struct Person 
+ {
+	 string name;
+	 int age;
+	 double height;
+ };
+ 表示定义了一个名为Person的结构体，包含三个成员变量name、age和height，分别表示人的姓名、年龄和身高。
+
+ 使用结构体时，可以通过以下几种方式：
+ 1. 定义结构体变量：可以在定义结构体时同时定义结构体变量，也可以在结构体定义后单独定义结构体变量。
+ 例如：
+ Person p1; // 定义结构体变量p1
+ struct Person p2, p3; // 定义结构体变量p2和p3 (struct可省略)
+ Person p4={"John", 30, 1.75}; // 定义并初始化结构体变量p4
+
+ 2. 访问结构体成员变量：可以通过点运算符（.）访问结构体变量的成员变量。
+ 例如：
+ p1.name = "Alice"; // 访问并修改结构体变量p1的name成员变量
+ p1.age = 25;       // 访问并修改结构体变量p1的age成员变量
+ p1.height = 1.65;  // 访问并修改结构体变量p1的height成员变量
+ cout << p1.name << endl; // 访问并输出结构体变量p1的name成员变量
+
+ 3. 结构体数组：可以定义结构体类型的数组，用于存储多个结构体变量。
+ 例如：
+  struct Person
+ {
+	 string name;
+	 int age;
+	 double height;
+ };
+ Person people[3]; // 定义一个包含3个Person结构体变量的数组，每个变量都包含了name、age和height成员变量
+ people[0].name = "Bob"; // 访问并修改数组中第一个结构体变量的name成员变量
+ people[1].age = 30;    // 访问并修改数组中第二个结构体变量的age成员变量
+ people[2].height = 1.75; // 访问并修改数组中第三个结构体变量的height成员变量
+ 也可以在定义结构体数组时进行初始化：
+ Person people[2] = { {"Alice", 25, 1.65},  {"Bob", 30, 1.75}  };
+
+ 遍历结构体数组时，可以使用循环语句访问每个结构体变量的成员变量。
+ 例如：
+ for (int i = 0; i < 2; i++)
+ {
+	 cout << "Name: " << people[i].name << endl;
+	 cout << "Age: " << people[i].age << endl;
+	 cout << "Height: " << people[i].height << endl;
+ }
+
+ 4. 结构体作为函数参数：可以将结构体变量作为函数的参数传递，实现对结构体数据的操作。
+ 例如：
+ void printPerson(struct Person p) 
+ {
+	 cout << "Name: " << p.name << endl;
+	 cout << "Age: " << p.age << endl;
+	 cout << "Height: " << p.height << endl;
+ }
+ int main() {
+ struct Person
+ {
+	 string name;
+	 int age;
+	 double height;
+ };
+	 Person p1;
+	 p1.name = "Charlie";
+	 p1.age = 28;
+	 p1.height = 1.80;
+	 printPerson(p1); // 将结构体变量p1作为参数传递给函数printPerson
+	 return 0;
+ }
+ 结果为：
+ Name: Charlie
+ Age: 28
+ Height: 1.8
+
+ 也可以通过引用传递结构体变量，以避免复制整个结构体数据，提高函数的效率。
+ void printPerson(struct Person &p) 
+ {
+     p.age =30; //可以修改传入的结构体变量
+	 cout << "Name: " << p.name << endl;
+	 cout << "Age: " << p.age << endl;
+	 cout << "Height: " << p.height << endl;
+ }
+ int main() 
+ {
+ struct Person
+ {
+	 string name;
+	 int age;
+	 double height;
+ };
+	 Person p1;
+	 p1.name = "Charlie";
+	 p1.age = 28;
+	 p1.height = 1.80;
+	 printPerson(p1); 
+	 return 0;
+ }
+ 还可以将结构体指针作为函数参数传递，通过指针访问结构体成员变量。
+ void printPerson(struct Person *p) 
+ {
+     p->age =35; //可以修改传入的结构体变量
+	 cout << "Name: " << p->name << endl;
+	 cout << "Age: " << p->age << endl;
+	 cout << "Height: " << p->height << endl;
+ }
+  int main()
+ {
+ struct Person
+ {
+	 string name;
+	 int age;
+	 double height;
+ };
+	 Person p1;
+	 p1.name = "Charlie";
+	 p1.age = 28;
+	 p1.height = 1.80;
+	 printPerson(&p1);
+	 return 0;
+ }
+
+ 5. 结构体的嵌套：结构体可以作为另一个结构体的成员变量，实现复杂数据结构的表示。
+ 例如：
+ struct Address {
+	 string street;
+	 string city;
+	 string country;
+ };
+ struct Person {
+	 string name;
+	 int age;
+	 Address address; // Address结构体作为Person结构体的成员变量
+ }
+//定义address结构体时，必须先于person结构体定义
+
+ 使用嵌套结构体时，可以通过点运算符访问嵌套结构体的成员变量。
+ 例如：
+ Person p1;
+ p1.name = "David";
+ p1.age = 35;
+ p1.address.street = "123 Main St"; // 访问嵌套结构体的street成员变量
+ p1.address.city = "New York";       // 访问嵌套结构体的city成员变量
+ p1.address.country = "USA";         // 访问嵌套结构体的country成员变量
+
+ 6. 结构体指针
+ 结构体指针是指向结构体变量的指针，可以通过结构体指针访问结构体成员变量。
+ 例如：
+ Person p1;
+ Person *ptr = &p1; // 定义一个指向结构体变量p1的指针
+ ptr->name = "Eve"; // 通过结构体指针访问并修改name成员变量
+ ptr->age = 22;     // 通过结构体指针访问并修改age成员变量
+ ptr->height = 1.60; // 通过结构体指针访问并修改height成员变量
+
+
+ 7. 结构体的比较：结构体变量之间可以使用比较运算符进行比较，但比较的是成员变量的值。
+ 例如：
+ Person p1 = {"Alice", 25, 1.65};
+ Person p2 = {"Bob", 30, 1.75};
+ if (p1.age < p2.age) {
+	 cout << p1.name << " is younger than " << p2.name << endl;
+ }
+ 结果为：
+ Alice is younger than Bob
+
+ 8.结构体中的const成员
+ 结构体中的const成员是指在结构体定义时使用const关键字修饰的成员变量，这些成员变量在结构体变量初始化后不能被修改。
+ 例如：
+ struct Person {
+	 string name;
+	 const int id; // const成员变量
+	 double height;
+ };
+ 使用结构体中的const成员时，需要在结构体变量初始化时通过构造函数进行赋值，之后不能再修改该成员变量的值。
+ 例如：
+ Person p1("Frank", 1001, 1.80); // 初始化结构体变量p1
+ cout << p1.id << endl; // 访问const成员变量id
+ p1.id = 2002; // 错误，不能修改const成员变量id
+
+ 函数中使用结构体中的const成员时，可以通过引用传递结构体变量，以避免复制整个结构体数据，提高函数的效率。
+ void printPerson(const Person &p) 
+ {
+	 cout << "Name: " << p.name << endl;
+	 cout << "ID: " << p.id << endl; // 访问const成员变量id
+	 cout << "Height: " << p.height << endl;
+ }
+ int main() 
+ {
+	 Person p1("Frank", 1001, 1.80);
+	 printPerson(p1); // 将结构体变量p1作为参数传递给函数printPerson
+	 return 0;
+ }
+ 结果为：
+ Name: Frank
+ ID: 1001
+ Height: 1.8
+*/
