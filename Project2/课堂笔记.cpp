@@ -305,3 +305,90 @@ return 0;
 1 20 200 221
 2 20 300 322
 */
+
+//文件包含
+/*
+#include<文件名>
+或
+#include"文件名"
+系统自带的文件用<>
+自己创建的用""
+*/
+
+//宏定义
+/*
+带参数的#define 可用于定义简单函数
+如
+#define area(r) 3.14*r*r
+相当于
+double area(double r)
+{
+    return 3.14 * r * r;
+}
+*/
+
+//命名空间
+/*
+定义命名空间
+在主函数前面可以定义命名空间
+语法:
+namespace <标识符>
+{语法序列}
+例如:
+namespace A
+{
+void f（）；
+void d（）；
+namespace B
+{
+void e（）；
+}  //可嵌套
+}
+namespace A  //追加补充
+{
+void g（）；
+}
+
+使用命名空间
+using namespace 命名空间；
+或
+using 命名空间::元素；
+
+例如
+标准名空间为 std
+using namespace std；
+意思是使用std中的所有元素
+using std::cin; 
+意思是只使用std中的cin命令
+
+调用命名空间内的函数前，需要先使用命名空间
+即使已经定义，也需要再写一句
+using namespace 命名空间;
+
+嵌套命名空间时，只需要使用最外层的命名空间
+但如果想使用内层命名空间中的元素，需标明
+如
+using namespace std; 
+void f();  
+namespace A
+{
+void f(); 
+namespace B
+{
+void f(); 
+}
+}
+f（）; //此时调用f函数，默认调用命名空间A外的函数
+using namespace A; 
+f（）;   //如此调用，f被当做重载函数，可能调用A
+外的，也可能是A内的
+A::f（）//如此调用，调用A中的f，但不是B中的
+B::f（）//如此调用，才可调用B中的f函数
+
+如果两个命名空间里有同名函数
+则使用时需要标明命名空间
+例如A::function
+指明要执行哪一个函数
+否则会被当做重载函数处理
+
+*/
