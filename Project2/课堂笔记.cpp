@@ -402,3 +402,29 @@ B::f（）//如此调用，才可调用B中的f函数
 3. exit（整型常量）
 关闭程序执行框，并将括号中的常量作为退出代码返回操作系统（可省略）
 */
+
+//实现int arr[n];
+/*
+#include <iostream>
+using namespace std;
+
+int n;
+cin >> n;
+int* arr = new int[n]; // 用 new 分配长度为 n 的数组
+// 用完后记得释放
+delete[] arr;
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int n;
+cin >> n;
+vector<int> arr(n);  // 定义一个长度为 n 的数组
+*/
+
+//数组
+/*
+1.数组本质是指针，下标是指针偏移量
+*/
