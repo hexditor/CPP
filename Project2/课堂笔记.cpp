@@ -471,3 +471,25 @@ cout<<sets(3)<<"12345";
 仍然会输出12345
 
 */
+
+//动态储存
+/*
+1. new 动态分配储存空间
+语法: 指针变量=new 类型
+例如: 
+int *p; 
+int n; 
+cin>>n; 
+p=new int[n]; 
+或者 int *p=new int[n]; 
+p=new int(10);  //可以在定义时赋值
+p=new int[n](); //将数组中的元素赋值为0
+2. delete 释放内存
+语法:delete 指针变量
+例如:
+delete[]p; //删除数组
+delete p;  //删除整型
+
+使用new 后，一定要使用delete, 否则会造成内存泄漏
+
+*/
