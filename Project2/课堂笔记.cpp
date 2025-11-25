@@ -534,3 +534,25 @@ vec.resize(10);               // 调整大小
 int capacity = vec.capacity(); // 当前容量
 vec.reserve(100);             // 预分配空间
 */
+
+//字符串
+/*
+1. C字符串(char型数组)
+char str1[]="student";  
+//结尾默认添加一个'/0'串结束符，用于识别字符串的结束
+char[80]; //只能存储79个字符，第80个用于存放'/0'
+想输入带有空格的字符串，不能用cin，要用cin.get
+2.串处理函数(需头文件<cstring>)
+strlen(str)        //求串长(包括'/0')
+strcpy_s(des, str) //把str复制给des
+strcmp(a, b).      //串比较，相等返回0，a大于b返回正数，a小于b返回负数
+3. string
+需头文件<string>
+name.size()  //返回串长(包括'/0')
+name.length()//返回串长(不包括'/0')
+a+=b;        //把b拼接在a后面
+a=b;         //把b赋值给a
+name.find(c) //查找字符c, 返回第一次出现的下标
+s.find(c,idx)//从s[idx]开始查找字符c, 返回第一次出现的下标
+*/
+
