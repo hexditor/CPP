@@ -517,7 +517,7 @@ ASCII码大的，向量较大
 如果相等，比较第二个元素
 ASCII码大的，向量较大
 以此类推
-比如ABCAA>ABCBBAAA
+比如ABCAA<ABCBBAAA
 
 3. 添加，删除元素
 vec.push_back(30);     // 在末尾添加元素
