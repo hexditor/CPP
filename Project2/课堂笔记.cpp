@@ -302,15 +302,17 @@ a作用于全局，b作用于function函数外的部分
 using namespace std ;
 int a=0; 
 int func()
+{
 int a=10; 
 static int b=100; 
-::a+=l; 
+::a+=1; 
 a+=10; 
 b+=100; 
 cout<<::a<<" "; 
 cout<<a<<" "; 
 cout<<b<<" "; 
 return ::a+a+b;
+}
 int main()
 {
 cout<<func () <<endl; 
