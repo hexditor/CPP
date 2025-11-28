@@ -77,6 +77,7 @@ int a =10
 cout<<oct<<a; //输出八进制数12
 cout<<dec<<a; //输出十进制数10
 cout<<hex<<a; //输出十六进制数a
+cin也可以加
 */
 
 //数学
