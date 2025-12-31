@@ -1,3 +1,13 @@
+//判断闰年
+/*
+#include <iostream>
+using namespace std;
+
+bool isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+*/
+
 //二进制转化为十进制
 /*
         #include<iostream>
