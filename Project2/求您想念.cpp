@@ -1,3 +1,23 @@
+//二进制转化为十进制
+/*
+        #include<iostream>
+        #include<string>
+        #include<cmath>
+        using namespace std;
+
+        int main()
+        {
+                string str;
+                cin>>str;
+                int n=str.length();
+                int sum=0;
+                for(int i=n-1;i>=0;i--)
+                {
+                sum+=(str[i]-'0')*pow(2,n-1-i);
+                }
+                cout<<sum;
+        }
+*/
 //十进制转n进制
 /*
 #include <iostream>
