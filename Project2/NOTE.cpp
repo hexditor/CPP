@@ -1011,7 +1011,27 @@ int main() {
     return 0;
 }
 
-
+(6)引用与重载
+void f(int &a)
+{
+cout<<"f(int &a)"; 
+}
+void f(const int &a)
+{
+cout<<"f(const int &a)"; 
+}
+int main()
+{
+int a=10; 
+f(a);   //调用f(int &a)
+f(10);  //调用f(const int &a)
+//这是因为 向f(int &a)中的&a传递的只能是变量
+int &a=10;是错误的，因为该语句的本质是
+int*const a=10;向指针赋值是错误的
+而const int &a=10;相当于
+int temp =10; int*const a=temp; 是合法的
+但是其中的temp由计算机管理，无法被观测
+}
 
 15.内联函数
 (1)内联函数是使用inline关键字定义的函数，编译器会将内联函数的函数体直接插入到调用处，从而减少函数调用的开销。
