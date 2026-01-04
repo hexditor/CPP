@@ -76,5 +76,110 @@ cout<<val<<endl;
 //类和对象
 //封装
 /*
-1.含义
+1.含义:权限不同的结构体(结构体默认public,类默认private)
+2.语法
+class 类名
+{
+
+访问权限
+
+public:
+
+属性
+
+行为
+
+}
+例如:
+class circle
+{
+public: 
+
+int r;  //属性
+
+double calculate_girth()
+{
+return 2*3.14*r; 
+}
+//行为(求周长)
+};
+
+int main()
+{
+circle c1;  //创建一个circle类对象
+c1.r=10;  //对该对象的属性进行修改
+cout<<c1.calculate_girth(); //执行该对象的行为
+}
+
+3. 权限
+(1)public 公共
+类内可以访问，类外也可访问
+(2)protected 保护
+类内可以访问，类外不可以访问
+(3)private 私有
+类内可以访问，类外不可以访问
+例如
+class person
+{
+public: 
+string name; 
+
+protected : 
+string car; 
+
+private: 
+string password; 
+
+public: 
+void f()
+{
+name ="bob"; 
+car = "suv"; 
+password ="114514"
+}
+}; 
+int main()
+{
+person p1; 
+p1.name="fullhouse"  //可以访问
+p1.password="123456" //错误，不可访问
+}
+
+私有权限可以用于设置某些属性为只读或只写
+例如:
+class person
+{
+
+public: 
+void set_name(string set_name)
+{
+name=set_name; 
+}
+
+string get_name()
+{
+return name; 
+}
+
+int get_age()
+{
+return age; 
+}
+
+private : 
+string name;
+int age=18; 
+}; 
+
+int main()
+{
+person p1; 
+p1.name="fullhouse";  //错误，不可访问
+cout<<p1.name;        //错误，不可访问
+
+p1.set_name("fullhouse");
+cout<<p1.get_name(); //将name设置为可读可写
+cout<<p1.age(); //将age设置为可写
+}
+
 */
