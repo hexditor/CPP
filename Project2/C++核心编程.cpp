@@ -71,10 +71,10 @@ void show(conat int& val)
 {
 cout<<val<<endl; 
 }
+*/
 
-
-
-
-
-
+//类和对象
+//封装
+/*
+1.含义
 */
