@@ -146,7 +146,7 @@ p1.password="123456" //错误，不可访问
 }
 
 私有权限可以用于设置某些属性为只读或只写
-还可以检验输入的正确性
+还可以用于检验输入的正确性
 例如:
 class person
 {
@@ -242,7 +242,25 @@ void();
 最后一行在"调用了析构函数"，是在程序结束后输出的
 因为此时p2被销毁，会调用析构函数，但由于程序已经结束，故可能无法察觉
 
-如果不写构造函数和析构函数，系统会自行创建并调用构造函数和析构函数，但都是空函数，只调用，不执行命令
+(3)注意事项
+如果不写构造函数和析构函数，系统会为每个类，自行创建并调用构造函数和析构函数，但都是空函数，只调用，不执行命令
+其中构造函数会创建两种(默认构造，拷贝构造函数)
+如果写了其中一种，系统就只会提供其他的函数
+
+即使没有自行定义拷贝构造函数，在试图使用拷贝构造初始化成员时，也能够初始化
+例如
+person p(p1); 
+会将p1的所有属性都赋值给p
+
+如果写了一个有参数的构造函数(不是拷贝构造)
+那么系统就将不提供无参数默认构造函数，但会提供拷贝构造函数
+此时如果试图通过默认构造初始化成员
+例如
+person p;
+则会报错，因为没有合适的构造函数可用
+必须写成 person p(参数);的形式，或者再定义一个合适的构造函数
+
+如果自行定义了一个拷贝构造函数，系统将不会提供任何构造函数
 
 2.构造函数的分类与调用
 (1)分类
@@ -264,6 +282,109 @@ person (const person &p)
 {
 age=p.age; 
 //将传入的成员的属性，拷贝到调用的成员的身上
+}
+
+拷贝构造会在通过值传递的方式给函数传参被调用
+例如 
+
+//接收到p后，会调用一次拷贝构造函数，将接收到的p拷贝到形参上，还会执行一次析构函数(相当于执行了一次 person p=p)
+void dowork(person p)
+{
+
+}
+
+void test()
+{
+person p; //会调用一次普通构造函数，和一次析构函数
+dowork(p); //传递给dowork函数中
+}
+
+会调用一次普通构造函数
+一次拷贝构造函数
+两次析构函数
+
+还会被通过返回值方式返回对象时调用
+例如
+person dowork()
+{
+person 1;.  //调用一次普通构造，和一次析构
+return p1;  //将p1返回给p
+}
+
+void test ()
+{
+person p=dowork(); 
+}
+//会将接收到的p1拷贝给p, 调用一次拷贝构造，一次析构
+
+会调用一次普通构造函数
+一次拷贝构造函数
+两次析构函数
+
+拷贝分为深拷贝与浅拷贝
+浅拷贝 仅复制地址，新旧对象指向同一块内存
+两个对象互相影响，改一个另一个也会变
+析构时，会将同一快内存释放多次，引起崩溃
+例如
+class String {
+public:
+    char* data;
+    String(const char* str) 
+    {
+        data = new char[strlen(str) + 1];
+        strcpy(data, str);
+    }
+    // 默认浅拷贝构造函数
+    ~String() { delete[] data; }
+};
+
+int main() {
+    String s1("Hello");
+    String s2 = s1; // 浅拷贝：s1.data 和 s2.data 指向同一内存
+    return 0;       // 析构时两次释放同一内存，导致未定义行为
+}
+
+深拷贝 则需要在堆区重新申请空间，再进行拷贝
+新的对象有新的内存，二者互不影响
+例如
+class GoodString {
+public:
+    char* data;
+    size_t len;
+
+    // 构造函数
+    GoodString(const char* str) {
+        len = strlen(str);
+        data = new char[len + 1];
+        strcpy(data, str);
+    }
+
+    // 深拷贝构造函数
+    GoodString(const GoodString& other) {
+        len = other.len;
+        data = new char[len + 1];
+        strcpy(data, other.data);
+    }
+
+    // 深拷贝赋值运算符
+    GoodString& operator=(const GoodString& other) {
+        if (this != &other) { // 防止自我赋值
+            delete[] data;    // 释放原有资源
+            len = other.len;
+            data = new char[len + 1];
+            strcpy(data, other.data);
+        }
+        return *this;
+    }
+
+    ~GoodString() { delete[] data; }
+};
+
+int main() {
+    GoodString s1("Hello");
+    GoodString s2 = s1; // 调用深拷贝构造函数
+    s2.data[0] = 'h';   // 修改s2不影响s1
+    return 0;
 }
 
 (2)调用
@@ -319,4 +440,93 @@ person(10); //创建一个匿名对象，调用有参构造函数
 不要用拷贝构造函数初始化匿名对象
 person(p3); //错误，该行代码等价为 person p3
 但由于之前已经有一个同名成员p3了，所以会报错
+
+4.初始化列表
+用于初始化属性
+语法
+构造函数():属性1(值1)，属性2(值2)……{}
+例如
+class person
+{
+public: 
+person(): A(10), B(20), C(30)
+{
+
+}
+int A; 
+int B; 
+int C; 
+}; 
+也可以
+class person
+{
+public: 
+person(int a, int b, int c): A(a), B(b), C(c)
+{
+
+}
+}; 
+void ()
+{
+person p(30 20 10); 
+}
+
+5. 类对象作为类成员
+类的成员可以是另一个类的对象，称该成员为成员对象
+class A
+{
+int m; 
+}
+class B
+{
+A a; 
+}
+在B类中创建一个A类型的属性，这个A类型还是一个类
+创建一个B的成员时，会先构造一个A的成员，再构造自身
+析构的顺序与构造相反
+
+6.静态成员
+>>静态成员变量
+所有成员共用同一份数据
+在编译阶段分配内存
+类内声明，类外初始化
+可以设置权限
+例如
+class person
+{
+public: 
+static int a; 
+}; 
+
+int person: : a=100; 
+void test()
+{
+person p1; //此时p1.a=100
+person p2; //此时p2.a=100
+p1.a=200;  //此时p1.a和p2.a都是200
+cout<<person: : a; //可以直接通过类名访问
+}
+
+>>静态成员函数
+所有对象共享同一函数
+静态成员函数只能访问静态成员变量
+可以设置权限
+例如
+class person
+{
+public: 
+static void f()
+{
+a=100; 
+b=200; //错误，不能访问非静态变量
+}
+static int a; 
+int b; 
+}; 
+void()
+{
+person p; 
+p.f();         //可以通过成员访问
+person: : f(); //可以通过类名访问
+}
 */
