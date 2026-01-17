@@ -3,14 +3,14 @@
  结构体是一种用户自定义的数据类型，用于将不同类型的数据组合在一起，形成一个整体。
  结构体可以包含多个成员变量，每个成员变量可以是不同的数据类型。
  结构体的定义语法如下：
- struct 结构体名 
+ struct 结构体名
  {
   数据类型 成员变量名1;
   数据类型 成员变量名2;
 	 ...
  };
  例如：
- struct Person 
+ struct Person
  {
 	 string name;
 	 int age;
@@ -58,7 +58,7 @@
 
  4. 结构体作为函数参数：可以将结构体变量作为函数的参数传递，实现对结构体数据的操作。
  例如：
- void printPerson(struct Person p) 
+ void printPerson(struct Person p)
  {
 	 cout << "Name: " << p.name << endl;
 	 cout << "Age: " << p.age << endl;
@@ -84,14 +84,14 @@
  Height: 1.8
 
  也可以通过引用传递结构体变量，以避免复制整个结构体数据，提高函数的效率。
- void printPerson(struct Person &p) 
+ void printPerson(struct Person &p)
  {
-     p.age =30; //可以修改传入的结构体变量
+	 p.age =30; //可以修改传入的结构体变量
 	 cout << "Name: " << p.name << endl;
 	 cout << "Age: " << p.age << endl;
 	 cout << "Height: " << p.height << endl;
  }
- int main() 
+ int main()
  {
  struct Person
  {
@@ -103,13 +103,13 @@
 	 p1.name = "Charlie";
 	 p1.age = 28;
 	 p1.height = 1.80;
-	 printPerson(p1); 
+	 printPerson(p1);
 	 return 0;
  }
  还可以将结构体指针作为函数参数传递，通过指针访问结构体成员变量。
- void printPerson(struct Person *p) 
+ void printPerson(struct Person *p)
  {
-     p->age =35; //可以修改传入的结构体变量
+	 p->age =35; //可以修改传入的结构体变量
 	 cout << "Name: " << p->name << endl;
 	 cout << "Age: " << p->age << endl;
 	 cout << "Height: " << p->height << endl;
@@ -188,13 +188,13 @@
  p1.id = 2002; // 错误，不能修改const成员变量id
 
  函数中使用结构体中的const成员时，可以通过引用传递结构体变量，以避免复制整个结构体数据，提高函数的效率。
- void printPerson(const Person &p) 
+ void printPerson(const Person &p)
  {
 	 cout << "Name: " << p.name << endl;
 	 cout << "ID: " << p.id << endl; // 访问const成员变量id
 	 cout << "Height: " << p.height << endl;
  }
- int main() 
+ int main()
  {
 	 Person p1("Frank", 1001, 1.80);
 	 printPerson(p1); // 将结构体变量p1作为参数传递给函数printPerson
@@ -225,11 +225,11 @@
 避免返回局部变量的地址，因为局部变量储存在栈区，程序执行后，会被释放，此时返回的地址为野指针，再次执行是，局部变量的地址已经改变
 
 2. 堆区:由程序员管理，如果程序员不释放，系统会在程序结束后释放
-new int(10);      
+new int(10);
 //表示在堆区开辟了一块整型内存，并储存数据10，此语句返回一个地址，需要用指针接收
-int *p=new int(10); 
+int *p=new int(10);
 //而指针本质是局部变量，储存在栈区，但指针指向的数据是在堆区的
-delete p;           
+delete p;
 //释放内存后，不能再访问
 int *arr=new int[10];
 //创建十个元素的数组
@@ -249,13 +249,13 @@ int &b=a;
 使用示例:
 int& f()
 {
-static int a=10; 
+static int a=10;
 return &a;
 }
 int main ()
 {
 int &b = f();
-cout<<b<<endl; 
+cout<<b<<endl;
 f()=1000;    //引用类型的函数可以做左值
 cout<<b<<endl;
 }
@@ -266,7 +266,7 @@ cout<<b<<endl;
 >>引用的本质<<
 引用的本质是一个指针常量(指谁不变，值可变)
 int &ref=a;
-相当于 int *const ref=&a; 
+相当于 int *const ref=&a;
 之后 对ref=10; 相当于 *ref=10;
 
 >>常量引用<<
@@ -274,10 +274,10 @@ const int &ref = 10;
 //定义了一个值固定为10的引用，但该引用没有原名
 
 用于修饰函数形参，防止误操作
-void show(conat int& val) 
+void show(conat int& val)
 //函数体内无法再修改val的值
 {
-cout<<val<<endl; 
+cout<<val<<endl;
 }
 */
 
@@ -301,13 +301,13 @@ public:
 例如:
 class circle
 {
-public: 
+public:
 
 int r;  //属性
 
 double calculate_girth()
 {
-return 2*3.14*r; 
+return 2*3.14*r;
 }
 //行为(求周长)
 };
@@ -329,26 +329,26 @@ cout<<c1.calculate_girth(); //执行该对象的行为
 例如
 class person
 {
-public: 
-string name; 
+public:
+string name;
 
-protected : 
-string car; 
+protected :
+string car;
 
-private: 
-string password; 
+private:
+string password;
 
-public: 
+public:
 void f()
 {
-name ="bob"; 
-car = "suv"; 
+name ="bob";
+car = "suv";
 password ="114514"
 }
-}; 
+};
 int main()
 {
-person p1; 
+person p1;
 p1.name="fullhouse"  //可以访问
 p1.password="123456" //错误，不可访问
 }
@@ -359,30 +359,30 @@ p1.password="123456" //错误，不可访问
 class person
 {
 
-public: 
+public:
 void set_name(string set_name)
 {
-name=set_name; 
+name=set_name;
 }
 
 string get_name()
 {
-return name; 
+return name;
 }
 
 int get_age()
 {
-return age; 
+return age;
 }
 
-private : 
+private :
 string name;
-int age=18; 
-}; 
+int age=18;
+};
 
 int main()
 {
-person p1; 
+person p1;
 p1.name="fullhouse";  //错误，不可访问
 cout<<p1.name;        //错误，不可访问
 
@@ -414,10 +414,10 @@ cout<<p1.age(); //将age设置为可写
 在对象销毁前，程序自动调用，无需手动调用，只能调用一次
 
 例如
-class person 
+class person
 {
 
- public: 
+ public:
  person ()
 {
 cout <<"调用了构造函数"<<endl;
@@ -428,17 +428,17 @@ cout <<"调用了构造函数"<<endl;
 cout <<"调用了析构函数"<<endl;
 }
 
-}; 
+};
 
 void f()
 {
- person p1; 
+ person p1;
 }
 
 int main()
 {
-person p2; 
-void(); 
+person p2;
+void();
 }
 
 结果为
@@ -457,7 +457,7 @@ void();
 
 即使没有自行定义拷贝构造函数，在试图使用拷贝构造初始化成员时，也能够初始化
 例如
-person p(p1); 
+person p(p1);
 会将p1的所有属性都赋值给p
 
 如果写了一个有参数的构造函数(不是拷贝构造)
@@ -488,12 +488,12 @@ cout <<"调用了构造函数"<<endl;
 >>拷贝构造
 person (const person &p)
 {
-age=p.age; 
+age=p.age;
 //将传入的成员的属性，拷贝到调用的成员的身上
 }
 
 拷贝构造会在通过值传递的方式给函数传参被调用
-例如 
+例如
 
 //接收到p后，会调用一次拷贝构造函数，将接收到的p拷贝到形参上，还会执行一次析构函数(相当于执行了一次 person p=p)
 void dowork(person p)
@@ -521,7 +521,7 @@ return p1;  //将p1返回给p
 
 void test ()
 {
-person p=dowork(); 
+person p=dowork();
 }
 //会将接收到的p1拷贝给p, 调用一次拷贝构造，一次析构
 
@@ -536,20 +536,20 @@ person p=dowork();
 例如
 class String {
 public:
-    char* data;
-    String(const char* str) 
-    {
-        data = new char[strlen(str) + 1];
-        strcpy(data, str);
-    }
-    // 默认浅拷贝构造函数
-    ~String() { delete[] data; }
+	char* data;
+	String(const char* str)
+	{
+		data = new char[strlen(str) + 1];
+		strcpy(data, str);
+	}
+	// 默认浅拷贝构造函数
+	~String() { delete[] data; }
 };
 
 int main() {
-    String s1("Hello");
-    String s2 = s1; // 浅拷贝：s1.data 和 s2.data 指向同一内存
-    return 0;       // 析构时两次释放同一内存，导致未定义行为
+	String s1("Hello");
+	String s2 = s1; // 浅拷贝：s1.data 和 s2.data 指向同一内存
+	return 0;       // 析构时两次释放同一内存，导致未定义行为
 }
 
 深拷贝 则需要在堆区重新申请空间，再进行拷贝
@@ -557,66 +557,66 @@ int main() {
 例如
 class GoodString {
 public:
-    char* data;
-    size_t len;
+	char* data;
+	size_t len;
 
-    // 构造函数
-    GoodString(const char* str) {
-        len = strlen(str);
-        data = new char[len + 1];
-        strcpy(data, str);
-    }
+	// 构造函数
+	GoodString(const char* str) {
+		len = strlen(str);
+		data = new char[len + 1];
+		strcpy(data, str);
+	}
 
-    // 深拷贝构造函数
-    GoodString(const GoodString& other) {
-        len = other.len;
-        data = new char[len + 1];
-        strcpy(data, other.data);
-    }
+	// 深拷贝构造函数
+	GoodString(const GoodString& other) {
+		len = other.len;
+		data = new char[len + 1];
+		strcpy(data, other.data);
+	}
 
-    // 深拷贝赋值运算符
-    GoodString& operator=(const GoodString& other) {
-        if (this != &other) { // 防止自我赋值
-            delete[] data;    // 释放原有资源
-            len = other.len;
-            data = new char[len + 1];
-            strcpy(data, other.data);
-        }
-        return *this;
-    }
+	// 深拷贝赋值运算符
+	GoodString& operator=(const GoodString& other) {
+		if (this != &other) { // 防止自我赋值
+			delete[] data;    // 释放原有资源
+			len = other.len;
+			data = new char[len + 1];
+			strcpy(data, other.data);
+		}
+		return *this;
+	}
 
-    ~GoodString() { delete[] data; }
+	~GoodString() { delete[] data; }
 };
 
 int main() {
-    GoodString s1("Hello");
-    GoodString s2 = s1; // 调用深拷贝构造函数
-    s2.data[0] = 'h';   // 修改s2不影响s1
-    return 0;
+	GoodString s1("Hello");
+	GoodString s2 = s1; // 调用深拷贝构造函数
+	s2.data[0] = 'h';   // 修改s2不影响s1
+	return 0;
 }
 
 (2)调用
 >>括号法
-class person 
+class person
 {
 public:
-int age; 
+int age;
 
 person ()
 {
-age=10; 
+age=10;
 }
 
 person (int a)
 {
-age=20; 
+age=20;
 }
 
 person (const person &p)
 {
 age=p.age;
 }
-}; 
+};
 
 void test()
 {
@@ -656,38 +656,38 @@ person(p3); //错误，该行代码等价为 person p3
 例如
 class person
 {
-public: 
+public:
 person(): A(10), B(20), C(30)
 {
 
 }
-int A; 
-int B; 
-int C; 
-}; 
+int A;
+int B;
+int C;
+};
 也可以
 class person
 {
-public: 
+public:
 person(int a, int b, int c): A(a), B(b), C(c)
 {
 
 }
-}; 
+};
 void ()
 {
-person p(30 20 10); 
+person p(30 20 10);
 }
 
 5. 类对象作为类成员
 类的成员可以是另一个类的对象，称该成员为成员对象
 class A
 {
-int m; 
+int m;
 }
 class B
 {
-A a; 
+A a;
 }
 在B类中创建一个A类型的属性，这个A类型还是一个类
 创建一个B的成员时，会先构造一个A的成员，再构造自身
@@ -702,11 +702,11 @@ A a;
 例如
 class person
 {
-public: 
-static int a; 
-}; 
+public:
+static int a;
+};
 
-int person: : a=100; 
+int person: : a=100;
 void test()
 {
 person p1; //此时p1.a=100
@@ -722,19 +722,84 @@ cout<<person: : a; //可以直接通过类名访问
 例如
 class person
 {
-public: 
+public:
 static void f()
 {
-a=100; 
+a=100;
 b=200; //错误，不能访问非静态变量
 }
-static int a; 
-int b; 
-}; 
+static int a;
+int b;
+};
 void()
 {
-person p; 
+person p;
 p.f();         //可以通过成员访问
 person: : f(); //可以通过类名访问
 }
+*/
+
+//对象模型与this指针
+//对象模型
+/*
+类对象在内存中的分布情况称为对象模型
+类对象由两部分组成:成员变量和成员函数指针,成员变量和成员函数分开存储
+只有非静态成员变量才属于类对象,静态成员变量和成员函数不属于类对象，所有对象共享同一份数据
+
+空对象占1字节内存,用于占位
+如果不是空对象,则不需占位,只包含成员变量占用的空间
+例如:
+class person
+{
+int age;          //每个成员都需要开辟一块内存,用于存放age;
+static int high;  //只需开辟一块内存,不必让每个成员都开辟,不属于类的对象上
+void f() {}       //非静态成员函数,也只需开辟一块内存,不必包含在每个类成员上 
+
+};
+
+void test ()
+{
+person p;    //sizeof p = 4;
+}
+*/
+//this指针
+/*
+this指针指向被调用的成员函数所属的对象,用于区分哪一个成员变量调用的成员函数
+this指针是隐含在每一个非静态成员函数内的一种指针,无需定义直接调用即可
+用途:
+当形参与成员变量重名的时候,可以用this区分
+例如:
+class person
+{
+public:
+person(int age;)
+{
+this->age=age;  //this指针指向被调用的成员函数所属的对象(p1)
+}
+int age;
+};
+void test ()
+{
+person p1(18);
+}
+
+当类的非静态成员函数返回对象本身,可以使用return *this;
+例如:
+class person
+{
+public:
+person& person_add_age(person &p) //如果person后面不加&,返回的是原对象的副本,而非原对象的引用                                                                                                            ,此时修改副本不影响原对象,
+{
+this->age+=p.age;
+return *this;
+}
+int age;
+};
+void test ()
+{
+person p1(10);
+person p2(8);
+p2.person_add_age(p1).person_add_age(p1).person_add_age(p1);  //执行后,p1.age = 38; 
+}
+
 */
